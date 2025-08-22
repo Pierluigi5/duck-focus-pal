@@ -3,9 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { BarChart3 } from 'lucide-react';
 import { StatsPanel } from '@/components/StatsPanel';
+import { useTranslation } from 'react-i18next';
 
 export function StatsDrawer() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -14,7 +16,7 @@ export function StatsDrawer() {
           variant="outline"
           size="icon"
           className="shadow-soft"
-          aria-label="View statistics"
+          aria-label={t('stats.view')}
         >
           <BarChart3 className="w-4 h-4" />
         </Button>
@@ -24,10 +26,10 @@ export function StatsDrawer() {
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
             <BarChart3 className="w-5 h-5" />
-            Statistics
+            {t('stats.title')}
           </SheetTitle>
           <SheetDescription>
-            Track your focus progress and achievements
+            {t('stats.description')}
           </SheetDescription>
         </SheetHeader>
 

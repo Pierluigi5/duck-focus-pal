@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { useTimerStore, TimerPhase } from '@/store/timerStore';
 import duckImage from '@/assets/duck-mascot.png';
+import { useTranslation } from 'react-i18next';
 
 interface DuckMascotProps {
   className?: string;
 }
 
 export function DuckMascot({ className = '' }: DuckMascotProps) {
+  const { t } = useTranslation();
   const { phase, isRunning, remainingTime, totalTime } = useTimerStore();
   
   // Determine duck animation based on current state
@@ -31,12 +33,12 @@ export function DuckMascot({ className = '' }: DuckMascotProps) {
   };
 
   const getMotivationalMessage = () => {
-    if (phase === 'idle') return "Ready to focus? 🎯";
-    if (phase === 'focus' && isRunning) return "You've got this! 💪";
-    if (phase === 'focus' && !isRunning) return "Take your time...";
-    if (phase === 'shortBreak') return "Quick break! ☕";
-    if (phase === 'longBreak') return "Well deserved rest! 🌟";
-    return "Let's go! 🚀";
+    if (phase === 'idle') return t('mascot.ready');
+    if (phase === 'focus' && isRunning) return t('mascot.focus');
+    if (phase === 'focus' && !isRunning) return t('mascot.paused');
+    if (phase === 'shortBreak') return t('mascot.shortBreak');
+    if (phase === 'longBreak') return t('mascot.longBreak');
+    return t('mascot.default');
   };
 
   // Calculate progress for subtle visual feedback
@@ -88,7 +90,7 @@ export function DuckMascot({ className = '' }: DuckMascotProps) {
         {/* Duck image */}
         <motion.img
           src={duckImage}
-          alt="Duck mascot"
+          alt={t('mascot.alt')}
           className={`w-20 h-20 mx-auto mt-6 ${getDuckAnimation()}`}
           style={{
             filter: phase === 'focus' && isRunning 

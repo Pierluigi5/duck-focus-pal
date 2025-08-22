@@ -7,9 +7,11 @@ import { PIPButton } from '@/components/PIPButton';
 import { useTimerStore } from '@/store/timerStore';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
   const { settings } = useTimerStore();
+  const { t } = useTranslation();
 
   // Apply theme and color theme
   useEffect(() => {
@@ -66,11 +68,9 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h1 className="text-2xl font-bold text-foreground mb-2">
-              🦆 Duck Pomodoro
-            </h1>
+            <h1 className="text-2xl font-bold text-foreground mb-2">🦆 Duck Pomodoro</h1>
             <p className="text-muted-foreground text-sm">
-              Focus with your friendly companion
+              {t('app.tagline')}
             </p>
           </motion.div>
 

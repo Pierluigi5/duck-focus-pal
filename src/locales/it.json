@@ -1,0 +1,99 @@
+{
+  "app": {
+    "title": "Duck Pomodoro",
+    "tagline": "Concentrati con il tuo amico fedele"
+  },
+  "settings": {
+    "open": "Apri impostazioni",
+    "title": "Impostazioni",
+    "description": "Personalizza la tua esperienza Duck Pomodoro",
+    "timerDurations": "Durate del timer",
+    "focusDuration": "Durata concentrazione (minuti)",
+    "shortBreak": "Pausa breve (minuti)",
+    "longBreak": "Pausa lunga (minuti)",
+    "longBreakInterval": "Pausa lunga dopo (pomodori)",
+    "audio": "Audio",
+    "playSounds": "Riproduci suoni di notifica",
+    "appearance": "Aspetto",
+    "colorTheme": "Tema colore",
+    "classicDuck": "Anatra classica",
+    "sunset": "Tramonto",
+    "ocean": "Oceano",
+    "forest": "Foresta",
+    "lavender": "Lavanda",
+    "candy": "Caramella",
+    "animationLevel": "Livello animazione",
+    "minimal": "Minimo",
+    "normal": "Normale",
+    "full": "Completo",
+    "theme": "Tema",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "language": "Lingua",
+    "english": "Inglese",
+    "italian": "Italiano",
+    "save": "Salva impostazioni",
+    "reset": "Reimposta",
+    "keyboardShortcuts": "Scorciatoie da tastiera",
+    "startPause": "Avvia/Pausa",
+    "skipPhase": "Salta fase"
+  },
+  "timer": {
+    "focus": "Tempo di concentrazione",
+    "shortBreak": "Pausa breve",
+    "longBreak": "Pausa lunga",
+    "ready": "Pronto per iniziare",
+    "cycle": "Ciclo",
+    "completed_one": "{{count}} 🍅 completato",
+    "completed_other": "{{count}} 🍅 completati",
+    "remainingAria": "{{minutes}} minuti e {{seconds}} secondi rimanenti"
+  },
+  "controls": {
+    "pause": "Pausa",
+    "start": "Avvia",
+    "reset": "Reimposta",
+    "skip": "Salta",
+    "pauseTimer": "Metti in pausa il timer",
+    "startTimer": "Avvia timer",
+    "resetTimer": "Reimposta timer",
+    "skipPhaseAria": "Salta alla fase successiva"
+  },
+  "stats": {
+    "view": "Visualizza statistiche",
+    "title": "Statistiche",
+    "description": "Tieni traccia dei tuoi progressi e traguardi",
+    "yourProgress": "I tuoi progressi",
+    "today": "Oggi",
+    "todayDescription": "Pomodori completati oggi",
+    "session": "Sessione",
+    "sessionDescription": "Nella sessione corrente",
+    "total": "Totale",
+    "totalDescription": "Pomodori totali",
+    "streak": "Serie",
+    "streakDescription": "Giorni consecutivi",
+    "congrats_one": "🎉 Ottimo lavoro! Hai completato {{count}} pomodoro oggi!",
+    "congrats_other": "🎉 Ottimo lavoro! Hai completato {{count}} pomodori oggi!"
+  },
+  "mascot": {
+    "ready": "Pronto a concentrarti? 🎯",
+    "focus": "Ce la puoi fare! 💪",
+    "paused": "Prenditi il tuo tempo...",
+    "shortBreak": "Pausa veloce! ☕",
+    "longBreak": "Riposo meritato! 🌟",
+    "default": "Andiamo! 🚀",
+    "alt": "Mascotte anatra"
+  },
+  "pip": {
+    "open": "Apri timer Picture-in-Picture",
+    "active": "PiP attivo",
+    "mode": "Modalità PiP",
+    "phaseReady": "Pronto",
+    "phaseFocus": "Concentrazione",
+    "phaseShortBreak": "Pausa breve",
+    "phaseLongBreak": "Pausa lunga"
+  },
+  "notFound": {
+    "message": "Oops! Pagina non trovata",
+    "return": "Torna alla Home"
+  }
+}

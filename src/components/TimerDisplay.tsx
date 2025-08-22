@@ -1,11 +1,13 @@
 import { useTimerStore } from '@/store/timerStore';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface TimerDisplayProps {
   className?: string;
 }
 
 export function TimerDisplay({ className = '' }: TimerDisplayProps) {
+  const { t } = useTranslation();
   const { remainingTime, phase, currentCycle, completedPomodoros } = useTimerStore();
   
   const minutes = Math.floor(remainingTime / 60);
@@ -16,13 +18,13 @@ export function TimerDisplay({ className = '' }: TimerDisplayProps) {
   const getPhaseLabel = () => {
     switch (phase) {
       case 'focus':
-        return 'Focus Time';
+        return t('timer.focus');
       case 'shortBreak':
-        return 'Short Break';
+        return t('timer.shortBreak');
       case 'longBreak':
-        return 'Long Break';
+        return t('timer.longBreak');
       default:
-        return 'Ready to Start';
+        return t('timer.ready');
     }
   };
 
@@ -54,9 +56,9 @@ export function TimerDisplay({ className = '' }: TimerDisplayProps) {
         </h2>
         
         <div className="flex items-center justify-center space-x-4 text-sm text-muted-foreground">
-          <span>Cycle {currentCycle}</span>
+          <span>{t('timer.cycle')} {currentCycle}</span>
           <span>•</span>
-          <span>{completedPomodoros} 🍅 completed</span>
+          <span>{t('timer.completed', { count: completedPomodoros })}</span>
         </div>
       </motion.div>
 
@@ -71,7 +73,7 @@ export function TimerDisplay({ className = '' }: TimerDisplayProps) {
           <span
             className={`transition-colors duration-300 ${getPhaseColor()}`}
             aria-live="polite"
-            aria-label={`${minutes} minutes and ${seconds} seconds remaining`}
+            aria-label={t('timer.remainingAria', { minutes, seconds })}
           >
             {formatTime(minutes)}:{formatTime(seconds)}
           </span>

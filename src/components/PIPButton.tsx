@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { PictureInPicture2 } from 'lucide-react';
 import { useTimerStore } from '@/store/timerStore';
+import { useTranslation } from 'react-i18next';
 
 export function PIPButton() {
   const [isPiPSupported, setIsPiPSupported] = useState(false);
   const [isPiPActive, setIsPiPActive] = useState(false);
-  const { remainingTime, phase } = useTimerStore();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Check if Picture-in-Picture is supported and we're in a top-level context
@@ -31,7 +32,13 @@ export function PIPButton() {
 
     try {
       // Create PiP window with minimal timer
-      const pipWindow = await (window as any).documentPictureInPicture.requestWindow({
+      const pipWindow = await (
+        window as unknown as {
+          documentPictureInPicture: {
+            requestWindow: (options: { width: number; height: number }) => Promise<Window>;
+          };
+        }
+      ).documentPictureInPicture.requestWindow({
         width: 200,
         height: 120,
       });
@@ -68,11 +75,17 @@ export function PIPButton() {
 
       const updatePiP = () => {
         const timer = useTimerStore.getState();
+        const phaseLabel =
+          timer.phase === 'idle'
+            ? t('pip.phaseReady')
+            : timer.phase === 'focus'
+            ? t('pip.phaseFocus')
+            : timer.phase === 'shortBreak'
+            ? t('pip.phaseShortBreak')
+            : t('pip.phaseLongBreak');
         pipWindow.document.body.innerHTML = `
           <div class="timer">${formatTime(timer.remainingTime)}</div>
-          <div class="phase">${timer.phase === 'idle' ? 'Ready' : 
-            timer.phase === 'focus' ? 'Focus' : 
-            timer.phase === 'shortBreak' ? 'Short Break' : 'Long Break'}</div>
+          <div class="phase">${phaseLabel}</div>
         `;
       };
 
@@ -107,10 +120,10 @@ export function PIPButton() {
       size="sm"
       disabled={isPiPActive}
       className="fixed top-4 left-4 shadow-soft z-50"
-      aria-label="Open Picture-in-Picture timer"
+      aria-label={t('pip.open')}
     >
       <PictureInPicture2 className="w-4 h-4 mr-2" />
-      {isPiPActive ? 'PiP Active' : 'PiP Mode'}
+      {isPiPActive ? t('pip.active') : t('pip.mode')}
     </Button>
   );
 }
