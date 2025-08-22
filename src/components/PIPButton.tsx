@@ -9,8 +9,15 @@ export function PIPButton() {
   const { remainingTime, phase } = useTimerStore();
 
   useEffect(() => {
-    // Check if Picture-in-Picture is supported
-    setIsPiPSupported('documentPictureInPicture' in window);
+    // Check if Picture-in-Picture is supported and we're in a top-level context
+    const isSupported = 'documentPictureInPicture' in window;
+    const isTopLevel = window.self === window.top;
+    
+    setIsPiPSupported(isSupported && isTopLevel);
+    
+    if (isSupported && !isTopLevel) {
+      console.log('📺 PiP is supported but disabled in iframe context. Deploy the app to use Picture-in-Picture mode.');
+    }
   }, []);
 
   const formatTime = (time: number) => {
@@ -88,6 +95,7 @@ export function PIPButton() {
     }
   };
 
+  // Don't show PiP button if not supported or in iframe
   if (!isPiPSupported) {
     return null;
   }
