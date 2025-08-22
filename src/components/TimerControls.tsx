@@ -2,16 +2,18 @@ import { Button } from '@/components/ui/button';
 import { useTimerStore } from '@/store/timerStore';
 import { Play, Pause, RotateCcw, SkipForward } from 'lucide-react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface TimerControlsProps {
   className?: string;
 }
 
 export function TimerControls({ className = '' }: TimerControlsProps) {
-  const { 
-    isRunning, 
-    phase, 
-    startTimer, 
+  const { t } = useTranslation();
+  const {
+    isRunning,
+    phase,
+    startTimer,
     pauseTimer, 
     resetTimer, 
     skipPhase,
@@ -80,17 +82,17 @@ export function TimerControls({ className = '' }: TimerControlsProps) {
         onClick={handleStartPause}
         size="lg"
         className="min-w-[120px] bg-primary hover:bg-primary/90 text-primary-foreground shadow-soft"
-        aria-label={isRunning ? 'Pause timer' : 'Start timer'}
+        aria-label={isRunning ? t('controls.pauseTimer') : t('controls.startTimer')}
       >
         {isRunning ? (
           <>
             <Pause className="w-5 h-5 mr-2" />
-            Pause
+            {t('controls.pause')}
           </>
         ) : (
           <>
             <Play className="w-5 h-5 mr-2" />
-            Start
+            {t('controls.start')}
           </>
         )}
       </Button>
@@ -101,10 +103,10 @@ export function TimerControls({ className = '' }: TimerControlsProps) {
         variant="outline"
         size="lg"
         className="min-w-[100px]"
-        aria-label="Reset timer"
+        aria-label={t('controls.resetTimer')}
       >
         <RotateCcw className="w-4 h-4 mr-2" />
-        Reset
+        {t('controls.reset')}
       </Button>
 
       {/* Skip button - only show when not idle */}
@@ -114,10 +116,10 @@ export function TimerControls({ className = '' }: TimerControlsProps) {
           variant="outline"
           size="lg"
           className="min-w-[100px]"
-          aria-label="Skip to next phase"
+          aria-label={t('controls.skipPhaseAria')}
         >
           <SkipForward className="w-4 h-4 mr-2" />
-          Skip
+          {t('controls.skip')}
         </Button>
       )}
     </div>

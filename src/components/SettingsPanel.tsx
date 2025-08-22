@@ -8,8 +8,10 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Settings, Volume2, VolumeX, Palette, Globe } from 'lucide-react';
 import { useTimerStore, TimerSettings } from '@/store/timerStore';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export function SettingsPanel() {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useTimerStore();
   const [tempSettings, setTempSettings] = useState<TimerSettings>(settings);
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +39,7 @@ export function SettingsPanel() {
           variant="outline"
           size="icon"
           className="fixed top-4 right-4 shadow-soft z-50"
-          aria-label="Open settings"
+          aria-label={t('settings.open')}
         >
           <Settings className="w-4 h-4" />
         </Button>
@@ -47,10 +49,10 @@ export function SettingsPanel() {
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
             <Settings className="w-5 h-5" />
-            Settings
+            {t('settings.title')}
           </SheetTitle>
           <SheetDescription>
-            Customize your Duck Pomodoro experience
+            {t('settings.description')}
           </SheetDescription>
         </SheetHeader>
 
@@ -62,11 +64,11 @@ export function SettingsPanel() {
         >
           {/* Timer Durations */}
           <div className="space-y-4">
-            <h3 className="text-base font-semibold">Timer Durations</h3>
+            <h3 className="text-base font-semibold">{t('settings.timerDurations')}</h3>
             
             <div className="space-y-3">
               <div>
-                <Label htmlFor="focus-duration">Focus Duration (minutes)</Label>
+                <Label htmlFor="focus-duration">{t('settings.focusDuration')}</Label>
                 <Input
                   id="focus-duration"
                   type="number"
@@ -79,7 +81,7 @@ export function SettingsPanel() {
               </div>
 
               <div>
-                <Label htmlFor="short-break">Short Break (minutes)</Label>
+                <Label htmlFor="short-break">{t('settings.shortBreak')}</Label>
                 <Input
                   id="short-break"
                   type="number"
@@ -92,7 +94,7 @@ export function SettingsPanel() {
               </div>
 
               <div>
-                <Label htmlFor="long-break">Long Break (minutes)</Label>
+                <Label htmlFor="long-break">{t('settings.longBreak')}</Label>
                 <Input
                   id="long-break"
                   type="number"
@@ -105,7 +107,7 @@ export function SettingsPanel() {
               </div>
 
               <div>
-                <Label htmlFor="long-break-interval">Long Break After (pomodoros)</Label>
+                <Label htmlFor="long-break-interval">{t('settings.longBreakInterval')}</Label>
                 <Input
                   id="long-break-interval"
                   type="number"
@@ -127,12 +129,12 @@ export function SettingsPanel() {
               ) : (
                 <VolumeX className="w-4 h-4" />
               )}
-              Audio
+              {t('settings.audio')}
             </h3>
-            
+
             <div className="flex items-center justify-between">
               <Label htmlFor="sound-enabled" className="text-sm">
-                Play notification sounds
+                {t('settings.playSounds')}
               </Label>
               <Switch
                 id="sound-enabled"
@@ -146,14 +148,14 @@ export function SettingsPanel() {
           <div className="space-y-4">
             <h3 className="text-base font-semibold flex items-center gap-2">
               <Palette className="w-4 h-4" />
-              Appearance
+              {t('settings.appearance')}
             </h3>
-            
+
             <div>
-              <Label htmlFor="color-theme">Color Theme</Label>
+              <Label htmlFor="color-theme">{t('settings.colorTheme')}</Label>
               <Select
                 value={tempSettings.colorTheme}
-                onValueChange={(value: 'classic' | 'sunset' | 'ocean' | 'forest' | 'lavender' | 'candy') => 
+                onValueChange={(value: 'classic' | 'sunset' | 'ocean' | 'forest' | 'lavender' | 'candy') =>
                   updateTempSetting('colorTheme', value)
                 }
               >
@@ -161,21 +163,21 @@ export function SettingsPanel() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="classic">🦆 Classic Duck</SelectItem>
-                  <SelectItem value="sunset">🌅 Sunset</SelectItem>
-                  <SelectItem value="ocean">🌊 Ocean</SelectItem>
-                  <SelectItem value="forest">🌲 Forest</SelectItem>
-                  <SelectItem value="lavender">💜 Lavender</SelectItem>
-                  <SelectItem value="candy">🍭 Candy</SelectItem>
+                  <SelectItem value="classic">🦆 {t('settings.classicDuck')}</SelectItem>
+                  <SelectItem value="sunset">🌅 {t('settings.sunset')}</SelectItem>
+                  <SelectItem value="ocean">🌊 {t('settings.ocean')}</SelectItem>
+                  <SelectItem value="forest">🌲 {t('settings.forest')}</SelectItem>
+                  <SelectItem value="lavender">💜 {t('settings.lavender')}</SelectItem>
+                  <SelectItem value="candy">🍭 {t('settings.candy')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div>
-              <Label htmlFor="animation-level">Animation Level</Label>
+              <Label htmlFor="animation-level">{t('settings.animationLevel')}</Label>
               <Select
                 value={tempSettings.animationLevel}
-                onValueChange={(value: 'minimal' | 'normal' | 'full') => 
+                onValueChange={(value: 'minimal' | 'normal' | 'full') =>
                   updateTempSetting('animationLevel', value)
                 }
               >
@@ -183,15 +185,15 @@ export function SettingsPanel() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="minimal">Minimal</SelectItem>
-                  <SelectItem value="normal">Normal</SelectItem>
-                  <SelectItem value="full">Full</SelectItem>
+                  <SelectItem value="minimal">{t('settings.minimal')}</SelectItem>
+                  <SelectItem value="normal">{t('settings.normal')}</SelectItem>
+                  <SelectItem value="full">{t('settings.full')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div>
-              <Label htmlFor="theme">Theme</Label>
+              <Label htmlFor="theme">{t('settings.theme')}</Label>
               <Select
                 value={tempSettings.theme}
                 onValueChange={(value: 'light' | 'dark') => updateTempSetting('theme', value)}
@@ -200,8 +202,8 @@ export function SettingsPanel() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
+                  <SelectItem value="light">{t('settings.light')}</SelectItem>
+                  <SelectItem value="dark">{t('settings.dark')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -211,9 +213,9 @@ export function SettingsPanel() {
           <div className="space-y-4">
             <h3 className="text-base font-semibold flex items-center gap-2">
               <Globe className="w-4 h-4" />
-              Language
+              {t('settings.language')}
             </h3>
-            
+
             <Select
               value={tempSettings.language}
               onValueChange={(value: 'en' | 'it') => updateTempSetting('language', value)}
@@ -222,8 +224,8 @@ export function SettingsPanel() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="en">English</SelectItem>
-                <SelectItem value="it">Italiano</SelectItem>
+                <SelectItem value="en">{t('settings.english')}</SelectItem>
+                <SelectItem value="it">{t('settings.italian')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -231,21 +233,21 @@ export function SettingsPanel() {
           {/* Action Buttons */}
           <div className="flex gap-3 pt-4 border-t">
             <Button onClick={handleSave} className="flex-1">
-              Save Settings
+              {t('settings.save')}
             </Button>
             <Button onClick={handleReset} variant="outline">
-              Reset
+              {t('settings.reset')}
             </Button>
           </div>
         </motion.div>
 
         {/* Keyboard Shortcuts Info */}
         <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-          <h4 className="text-sm font-semibold mb-2">Keyboard Shortcuts</h4>
+          <h4 className="text-sm font-semibold mb-2">{t('settings.keyboardShortcuts')}</h4>
           <div className="space-y-1 text-xs text-muted-foreground">
-            <div><kbd className="bg-background px-1 rounded">Space</kbd> - Start/Pause</div>
-            <div><kbd className="bg-background px-1 rounded">R</kbd> - Reset</div>
-            <div><kbd className="bg-background px-1 rounded">→</kbd> - Skip Phase</div>
+            <div><kbd className="bg-background px-1 rounded">Space</kbd> - {t('settings.startPause')}</div>
+            <div><kbd className="bg-background px-1 rounded">R</kbd> - {t('settings.reset')}</div>
+            <div><kbd className="bg-background px-1 rounded">→</kbd> - {t('settings.skipPhase')}</div>
           </div>
         </div>
       </SheetContent>

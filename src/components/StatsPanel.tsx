@@ -2,48 +2,50 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useTimerStore } from '@/store/timerStore';
 import { TrendingUp, Target, Calendar, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface StatsPanelProps {
   className?: string;
 }
 
 export function StatsPanel({ className = '' }: StatsPanelProps) {
+  const { t } = useTranslation();
   const { stats, completedPomodoros } = useTimerStore();
 
   const statCards = [
     {
-      title: 'Today',
+      title: t('stats.today'),
       value: stats.todayPomodoros,
       icon: Target,
       color: 'text-duck-yellow',
-      description: 'Pomodoros completed today',
+      description: t('stats.todayDescription'),
     },
     {
-      title: 'Session',
+      title: t('stats.session'),
       value: completedPomodoros,
       icon: TrendingUp,
       color: 'text-duck-blue',
-      description: 'In current session',
+      description: t('stats.sessionDescription'),
     },
     {
-      title: 'Total',
+      title: t('stats.total'),
       value: stats.totalPomodoros,
       icon: Calendar,
       color: 'text-duck-green',
-      description: 'All time pomodoros',
+      description: t('stats.totalDescription'),
     },
     {
-      title: 'Streak',
+      title: t('stats.streak'),
       value: stats.streakDays,
       icon: Trophy,
       color: 'text-duck-orange',
-      description: 'Days in a row',
+      description: t('stats.streakDescription'),
     },
   ];
 
   return (
     <div className={`space-y-4 ${className}`}>
-      <h3 className="text-lg font-semibold text-center">Your Progress</h3>
+      <h3 className="text-lg font-semibold text-center">{t('stats.yourProgress')}</h3>
       
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {statCards.map((stat, index) => (
@@ -81,7 +83,7 @@ export function StatsPanel({ className = '' }: StatsPanelProps) {
           transition={{ duration: 0.3 }}
         >
           <p className="text-sm font-medium text-foreground">
-            🎉 Great job! You've completed {stats.todayPomodoros} pomodoro{stats.todayPomodoros > 1 ? 's' : ''} today!
+            {t('stats.congrats', { count: stats.todayPomodoros })}
           </p>
         </motion.div>
       )}

@@ -1,0 +1,99 @@
+{
+  "app": {
+    "title": "Duck Pomodoro",
+    "tagline": "Focus with your friendly companion"
+  },
+  "settings": {
+    "open": "Open settings",
+    "title": "Settings",
+    "description": "Customize your Duck Pomodoro experience",
+    "timerDurations": "Timer Durations",
+    "focusDuration": "Focus Duration (minutes)",
+    "shortBreak": "Short Break (minutes)",
+    "longBreak": "Long Break (minutes)",
+    "longBreakInterval": "Long Break After (pomodoros)",
+    "audio": "Audio",
+    "playSounds": "Play notification sounds",
+    "appearance": "Appearance",
+    "colorTheme": "Color Theme",
+    "classicDuck": "Classic Duck",
+    "sunset": "Sunset",
+    "ocean": "Ocean",
+    "forest": "Forest",
+    "lavender": "Lavender",
+    "candy": "Candy",
+    "animationLevel": "Animation Level",
+    "minimal": "Minimal",
+    "normal": "Normal",
+    "full": "Full",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "language": "Language",
+    "english": "English",
+    "italian": "Italiano",
+    "save": "Save Settings",
+    "reset": "Reset",
+    "keyboardShortcuts": "Keyboard Shortcuts",
+    "startPause": "Start/Pause",
+    "skipPhase": "Skip Phase"
+  },
+  "timer": {
+    "focus": "Focus Time",
+    "shortBreak": "Short Break",
+    "longBreak": "Long Break",
+    "ready": "Ready to Start",
+    "cycle": "Cycle",
+    "completed_one": "{{count}} 🍅 completed",
+    "completed_other": "{{count}} 🍅 completed",
+    "remainingAria": "{{minutes}} minutes and {{seconds}} seconds remaining"
+  },
+  "controls": {
+    "pause": "Pause",
+    "start": "Start",
+    "reset": "Reset",
+    "skip": "Skip",
+    "pauseTimer": "Pause timer",
+    "startTimer": "Start timer",
+    "resetTimer": "Reset timer",
+    "skipPhaseAria": "Skip to next phase"
+  },
+  "stats": {
+    "view": "View statistics",
+    "title": "Statistics",
+    "description": "Track your focus progress and achievements",
+    "yourProgress": "Your Progress",
+    "today": "Today",
+    "todayDescription": "Pomodoros completed today",
+    "session": "Session",
+    "sessionDescription": "In current session",
+    "total": "Total",
+    "totalDescription": "All time pomodoros",
+    "streak": "Streak",
+    "streakDescription": "Days in a row",
+    "congrats_one": "🎉 Great job! You've completed {{count}} pomodoro today!",
+    "congrats_other": "🎉 Great job! You've completed {{count}} pomodoros today!"
+  },
+  "mascot": {
+    "ready": "Ready to focus? 🎯",
+    "focus": "You've got this! 💪",
+    "paused": "Take your time...",
+    "shortBreak": "Quick break! ☕",
+    "longBreak": "Well deserved rest! 🌟",
+    "default": "Let's go! 🚀",
+    "alt": "Duck mascot"
+  },
+  "pip": {
+    "open": "Open Picture-in-Picture timer",
+    "active": "PiP Active",
+    "mode": "PiP Mode",
+    "phaseReady": "Ready",
+    "phaseFocus": "Focus",
+    "phaseShortBreak": "Short Break",
+    "phaseLongBreak": "Long Break"
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "return": "Return to Home"
+  }
+}

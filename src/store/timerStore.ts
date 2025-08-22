@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import i18n from '@/i18n';
 
 export type TimerPhase = 'focus' | 'shortBreak' | 'longBreak' | 'idle';
 
@@ -218,6 +219,10 @@ export const useTimerStore = create<TimerState>()(
       updateSettings: (newSettings: Partial<TimerSettings>) => {
         const state = get();
         const updatedSettings = { ...state.settings, ...newSettings };
+
+        if (newSettings.language) {
+          i18n.changeLanguage(newSettings.language);
+        }
         
         // Apply color theme to document
         if (newSettings.colorTheme) {
@@ -258,6 +263,11 @@ export const useTimerStore = create<TimerState>()(
         completedPomodoros: state.completedPomodoros,
         currentCycle: state.currentCycle,
       }),
+      onRehydrateStorage: () => (state) => {
+        if (state?.settings?.language) {
+          i18n.changeLanguage(state.settings.language);
+        }
+      },
     }
   )
 );
