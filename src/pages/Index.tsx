@@ -11,14 +11,17 @@ import { motion } from 'framer-motion';
 const Index = () => {
   const { settings } = useTimerStore();
 
-  // Apply theme
+  // Apply theme and color theme
   useEffect(() => {
     if (settings.theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, [settings.theme]);
+    
+    // Apply color theme
+    document.documentElement.setAttribute('data-color-theme', settings.colorTheme);
+  }, [settings.theme, settings.colorTheme]);
 
   // Set page title based on timer state
   const { remainingTime, phase, isRunning } = useTimerStore();

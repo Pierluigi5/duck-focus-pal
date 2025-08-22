@@ -2,49 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Duck Pomodoro Design System - Playful pastel colors inspired by rubber ducks */
+/* Duck Pomodoro Design System - Playful pastel colors with multiple themes */
 
 @layer base {
   :root {
-    /* Core duck-themed palette */
+    /* Base colors - Classic Duck theme */
     --background: 50 100% 98%;
     --foreground: 30 15% 25%;
-
     --card: 0 0% 100%;
     --card-foreground: 30 15% 25%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 30 15% 25%;
-
-    /* Duck yellow as primary - warm and friendly */
     --primary: 48 100% 70%;
     --primary-foreground: 30 15% 25%;
-
-    /* Soft duck orange for secondary actions */
     --secondary: 25 90% 88%;
     --secondary-foreground: 30 15% 25%;
-
-    /* Gentle pastels for muted elements */
     --muted: 50 50% 95%;
     --muted-foreground: 30 10% 50%;
-
-    /* Soft blue accent like water */
     --accent: 200 50% 85%;
     --accent-foreground: 30 15% 25%;
-
-    /* Gentle red for breaks/stop */
     --destructive: 0 50% 75%;
     --destructive-foreground: 0 0% 100%;
-
-    /* Soft borders and inputs */
     --border: 50 30% 90%;
     --input: 50 30% 95%;
     --ring: 48 100% 70%;
-
-    /* Rounded for playful feel */
     --radius: 1rem;
 
-    /* Duck-themed custom colors */
+    /* Duck-themed custom colors - Classic */
     --duck-yellow: 48 100% 70%;
     --duck-orange: 25 90% 75%;
     --duck-blue: 200 70% 80%;
@@ -56,12 +40,12 @@
     --break-color: 200 60% 75%;
     --long-break-color: 120 50% 75%;
 
-    /* Gradients for beautiful backgrounds */
+    /* Gradients */
     --gradient-duck: linear-gradient(135deg, hsl(48 100% 85%), hsl(25 90% 85%));
     --gradient-focus: linear-gradient(135deg, hsl(48 100% 92%), hsl(50 50% 95%));
     --gradient-break: linear-gradient(135deg, hsl(200 60% 92%), hsl(220 50% 95%));
 
-    /* Shadows for depth */
+    /* Shadows */
     --shadow-soft: 0 4px 20px hsl(48 100% 70% / 0.15);
     --shadow-duck: 0 8px 32px hsl(48 100% 70% / 0.2);
 
@@ -69,21 +53,105 @@
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
+    /* Sidebar (if needed) */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Sunset Theme */
+  :root[data-color-theme="sunset"] {
+    --primary: 20 100% 70%;
+    --duck-yellow: 35 100% 75%;
+    --duck-orange: 15 100% 70%;
+    --duck-blue: 340 60% 80%;
+    --duck-green: 45 80% 75%;
+    --duck-pink: 350 70% 85%;
+    --focus-color: 20 100% 70%;
+    --break-color: 340 60% 80%;
+    --long-break-color: 35 80% 75%;
+    --gradient-duck: linear-gradient(135deg, hsl(35 100% 85%), hsl(15 100% 80%));
+    --gradient-focus: linear-gradient(135deg, hsl(20 100% 92%), hsl(35 80% 95%));
+    --gradient-break: linear-gradient(135deg, hsl(340 60% 92%), hsl(350 50% 95%));
+    --shadow-soft: 0 4px 20px hsl(20 100% 70% / 0.15);
+    --shadow-duck: 0 8px 32px hsl(20 100% 70% / 0.2);
+  }
+
+  /* Ocean Theme */
+  :root[data-color-theme="ocean"] {
+    --primary: 200 100% 65%;
+    --duck-yellow: 190 100% 75%;
+    --duck-orange: 180 80% 70%;
+    --duck-blue: 210 90% 75%;
+    --duck-green: 170 70% 75%;
+    --duck-pink: 220 60% 85%;
+    --focus-color: 200 100% 65%;
+    --break-color: 210 90% 75%;
+    --long-break-color: 170 70% 75%;
+    --gradient-duck: linear-gradient(135deg, hsl(190 100% 85%), hsl(180 80% 85%));
+    --gradient-focus: linear-gradient(135deg, hsl(200 100% 92%), hsl(190 80% 95%));
+    --gradient-break: linear-gradient(135deg, hsl(210 90% 92%), hsl(220 50% 95%));
+    --shadow-soft: 0 4px 20px hsl(200 100% 65% / 0.15);
+    --shadow-duck: 0 8px 32px hsl(200 100% 65% / 0.2);
+  }
+
+  /* Forest Theme */
+  :root[data-color-theme="forest"] {
+    --primary: 120 60% 60%;
+    --duck-yellow: 140 80% 70%;
+    --duck-orange: 90 70% 65%;
+    --duck-blue: 180 50% 75%;
+    --duck-green: 110 70% 70%;
+    --duck-pink: 80 60% 80%;
+    --focus-color: 120 60% 60%;
+    --break-color: 180 50% 75%;
+    --long-break-color: 110 70% 70%;
+    --gradient-duck: linear-gradient(135deg, hsl(140 80% 85%), hsl(90 70% 85%));
+    --gradient-focus: linear-gradient(135deg, hsl(120 60% 92%), hsl(140 60% 95%));
+    --gradient-break: linear-gradient(135deg, hsl(180 50% 92%), hsl(170 40% 95%));
+    --shadow-soft: 0 4px 20px hsl(120 60% 60% / 0.15);
+    --shadow-duck: 0 8px 32px hsl(120 60% 60% / 0.2);
+  }
+
+  /* Lavender Theme */
+  :root[data-color-theme="lavender"] {
+    --primary: 280 70% 70%;
+    --duck-yellow: 300 60% 80%;
+    --duck-orange: 320 70% 75%;
+    --duck-blue: 260 80% 80%;
+    --duck-green: 240 60% 75%;
+    --duck-pink: 310 80% 85%;
+    --focus-color: 280 70% 70%;
+    --break-color: 260 80% 80%;
+    --long-break-color: 240 60% 75%;
+    --gradient-duck: linear-gradient(135deg, hsl(300 60% 90%), hsl(320 70% 90%));
+    --gradient-focus: linear-gradient(135deg, hsl(280 70% 95%), hsl(300 60% 97%));
+    --gradient-break: linear-gradient(135deg, hsl(260 80% 95%), hsl(250 50% 97%));
+    --shadow-soft: 0 4px 20px hsl(280 70% 70% / 0.15);
+    --shadow-duck: 0 8px 32px hsl(280 70% 70% / 0.2);
+  }
+
+  /* Candy Theme */
+  :root[data-color-theme="candy"] {
+    --primary: 340 100% 75%;
+    --duck-yellow: 50 100% 80%;
+    --duck-orange: 25 100% 75%;
+    --duck-blue: 300 70% 80%;
+    --duck-green: 150 60% 80%;
+    --duck-pink: 320 100% 85%;
+    --focus-color: 340 100% 75%;
+    --break-color: 300 70% 80%;
+    --long-break-color: 150 60% 80%;
+    --gradient-duck: linear-gradient(135deg, hsl(50 100% 90%), hsl(340 100% 90%));
+    --gradient-focus: linear-gradient(135deg, hsl(340 100% 95%), hsl(50 100% 97%));
+    --gradient-break: linear-gradient(135deg, hsl(300 70% 95%), hsl(320 80% 97%));
+    --shadow-soft: 0 4px 20px hsl(340 100% 75% / 0.15);
+    --shadow-duck: 0 8px 32px hsl(340 100% 75% / 0.2);
   }
 
   .dark {

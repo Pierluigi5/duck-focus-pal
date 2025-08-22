@@ -3,6 +3,8 @@ import { persist } from 'zustand/middleware';
 
 export type TimerPhase = 'focus' | 'shortBreak' | 'longBreak' | 'idle';
 
+export type ColorTheme = 'classic' | 'sunset' | 'ocean' | 'forest' | 'lavender' | 'candy';
+
 export interface TimerSettings {
   focusDuration: number; // in minutes
   shortBreakDuration: number;
@@ -11,6 +13,7 @@ export interface TimerSettings {
   soundEnabled: boolean;
   animationLevel: 'minimal' | 'normal' | 'full';
   theme: 'light' | 'dark';
+  colorTheme: ColorTheme;
   language: 'en' | 'it';
 }
 
@@ -54,6 +57,7 @@ const defaultSettings: TimerSettings = {
   soundEnabled: false,
   animationLevel: 'normal',
   theme: 'light',
+  colorTheme: 'classic',
   language: 'en',
 };
 
@@ -214,6 +218,11 @@ export const useTimerStore = create<TimerState>()(
       updateSettings: (newSettings: Partial<TimerSettings>) => {
         const state = get();
         const updatedSettings = { ...state.settings, ...newSettings };
+        
+        // Apply color theme to document
+        if (newSettings.colorTheme) {
+          document.documentElement.setAttribute('data-color-theme', newSettings.colorTheme);
+        }
         
         // If timer is idle, update the remaining time to match new focus duration
         let updates: Partial<TimerState> = { settings: updatedSettings };

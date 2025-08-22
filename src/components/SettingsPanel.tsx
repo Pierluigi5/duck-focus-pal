@@ -150,6 +150,28 @@ export function SettingsPanel() {
             </h3>
             
             <div>
+              <Label htmlFor="color-theme">Color Theme</Label>
+              <Select
+                value={tempSettings.colorTheme}
+                onValueChange={(value: 'classic' | 'sunset' | 'ocean' | 'forest' | 'lavender' | 'candy') => 
+                  updateTempSetting('colorTheme', value)
+                }
+              >
+                <SelectTrigger className="mt-1">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="classic">🦆 Classic Duck</SelectItem>
+                  <SelectItem value="sunset">🌅 Sunset</SelectItem>
+                  <SelectItem value="ocean">🌊 Ocean</SelectItem>
+                  <SelectItem value="forest">🌲 Forest</SelectItem>
+                  <SelectItem value="lavender">💜 Lavender</SelectItem>
+                  <SelectItem value="candy">🍭 Candy</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div>
               <Label htmlFor="animation-level">Animation Level</Label>
               <Select
                 value={tempSettings.animationLevel}
