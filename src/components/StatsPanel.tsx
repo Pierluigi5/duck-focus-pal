@@ -2,15 +2,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useTimerStore } from '@/store/timerStore';
 import { TrendingUp, Target, Calendar, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
+import type React from 'react';
 
 interface StatsPanelProps {
   className?: string;
 }
 
+interface StatCard {
+  title: string;
+  value: number;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+  description: string;
+}
+
 export function StatsPanel({ className = '' }: StatsPanelProps) {
   const { stats, completedPomodoros } = useTimerStore();
 
-  const statCards = [
+  const statCards: StatCard[] = [
     {
       title: 'Today',
       value: stats.todayPomodoros,
