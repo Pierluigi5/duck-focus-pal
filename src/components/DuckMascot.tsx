@@ -7,27 +7,6 @@ interface DuckMascotProps {
 
 export function DuckMascot({ className = '' }: DuckMascotProps) {
   const { phase, isRunning, remainingTime, totalTime } = useTimerStore();
-  
-  // Determine duck animation based on current state
-  const getDuckAnimation = () => {
-    if (phase === 'idle') {
-      return 'animate-duck-float';
-    }
-    
-    if (phase === 'focus' && isRunning) {
-      return 'animate-pulse-soft';
-    }
-    
-    if ((phase === 'shortBreak' || phase === 'longBreak') && isRunning) {
-      return 'animate-duck-wiggle';
-    }
-    
-    if (!isRunning && (phase === 'focus' || phase === 'shortBreak' || phase === 'longBreak')) {
-      return 'animate-duck-bounce';
-    }
-    
-    return 'animate-duck-float';
-  };
 
   const getMotivationalMessage = () => {
     if (phase === 'idle') return "Ready to focus? 🎯";
@@ -85,16 +64,9 @@ export function DuckMascot({ className = '' }: DuckMascotProps) {
         </div>
 
         {/* Duck emoji */}
-        <motion.div
-          className={`w-20 h-20 mx-auto mt-6 flex items-center justify-center text-5xl ${getDuckAnimation()}`}
-          style={{
-            filter: phase === 'focus' && isRunning 
-              ? 'brightness(1.1) saturate(1.2)' 
-              : 'brightness(1) saturate(1)',
-          }}
-        >
+        <div className="w-20 h-20 mx-auto mt-6 flex items-center justify-center text-5xl">
           🦆
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Motivational message */}

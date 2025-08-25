@@ -3,6 +3,7 @@ import { TimerDisplay } from '@/components/TimerDisplay';
 import { TimerControls } from '@/components/TimerControls';
 import { SettingsPanel } from '@/components/SettingsPanel';
 import { StatsDrawer } from '@/components/StatsDrawer';
+import { HistoryDrawer } from '@/components/HistoryDrawer';
 import { PIPButton } from '@/components/PIPButton';
 import { useTimerStore } from '@/store/timerStore';
 import { useEffect } from 'react';
@@ -47,6 +48,7 @@ const Index = () => {
       </div>
       
       <div className="fixed top-4 right-4 z-50 flex gap-2">
+        <HistoryDrawer />
         <StatsDrawer />
         <SettingsPanel />
       </div>

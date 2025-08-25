@@ -17,11 +17,20 @@ export interface TimerSettings {
   language: 'en' | 'it';
 }
 
+export interface SessionHistory {
+  id: string;
+  date: string;
+  type: 'focus' | 'shortBreak' | 'longBreak';
+  duration: number; // in minutes
+  completed: boolean;
+}
+
 export interface TimerStats {
   todayPomodoros: number;
   totalPomodoros: number;
   streakDays: number;
   lastActiveDate: string;
+  history: SessionHistory[];
 }
 
 interface TimerState {
@@ -47,6 +56,7 @@ interface TimerState {
   tick: () => void;
   updateSettings: (settings: Partial<TimerSettings>) => void;
   setPhase: (phase: TimerPhase) => void;
+  clearHistory: () => void;
 }
 
 const defaultSettings: TimerSettings = {
@@ -66,6 +76,7 @@ const defaultStats: TimerStats = {
   totalPomodoros: 0,
   streakDays: 0,
   lastActiveDate: new Date().toISOString().split('T')[0],
+  history: [],
 };
 
 const getPhaseTime = (phase: TimerPhase, settings: TimerSettings): number => {
@@ -170,17 +181,30 @@ export const useTimerStore = create<TimerState>()(
             newCompletedPomodoros++;
             // Update stats
             const today = new Date().toISOString().split('T')[0];
+            const sessionId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+            
+            // Add completed session to history
+            const newSession: SessionHistory = {
+              id: sessionId,
+              date: new Date().toISOString(),
+              type: 'focus',
+              duration: state.settings.focusDuration,
+              completed: true,
+            };
+            
             if (newStats.lastActiveDate !== today) {
               newStats = {
                 ...newStats,
                 todayPomodoros: 1,
                 lastActiveDate: today,
                 streakDays: newStats.streakDays + 1,
+                history: [...newStats.history, newSession],
               };
             } else {
               newStats = {
                 ...newStats,
                 todayPomodoros: newStats.todayPomodoros + 1,
+                history: [...newStats.history, newSession],
               };
             }
             newStats.totalPomodoros++;
@@ -248,6 +272,18 @@ export const useTimerStore = create<TimerState>()(
           totalTime: time,
           isRunning: false,
         });
+      },
+
+      clearHistory: () => {
+        set((state) => ({
+          stats: {
+            ...state.stats,
+            history: [],
+            todayPomodoros: 0,
+            totalPomodoros: 0,
+            streakDays: 0,
+          },
+        }));
       },
     }),
     {
