@@ -64,7 +64,7 @@ export function DuckMascot({ className = '' }: DuckMascotProps) {
         </div>
 
         {/* Duck emoji */}
-        <div className="w-20 h-20 mx-auto mt-6 flex items-center justify-center text-5xl">
+        <div className="w-20 h-20 mx-auto mt-6 flex items-center justify-center text-6xl">
           🦆
         </div>
       </motion.div>
