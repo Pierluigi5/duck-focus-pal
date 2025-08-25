@@ -43,7 +43,7 @@ export function SettingsPanel() {
         </Button>
       </SheetTrigger>
       
-      <SheetContent className="w-full sm:max-w-lg">
+      <SheetContent className="w-full sm:max-w-md md:max-w-lg overflow-y-auto max-h-screen">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
             <Settings className="w-5 h-5" />
@@ -64,7 +64,7 @@ export function SettingsPanel() {
           <div className="space-y-4">
             <h3 className="text-base font-semibold">Timer Durations</h3>
             
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <Label htmlFor="focus-duration">Focus Duration (minutes)</Label>
                 <Input
@@ -130,8 +130,8 @@ export function SettingsPanel() {
               Audio
             </h3>
             
-            <div className="flex items-center justify-between">
-              <Label htmlFor="sound-enabled" className="text-sm">
+            <div className="flex items-center justify-between gap-2">
+              <Label htmlFor="sound-enabled" className="text-sm flex-1">
                 Play notification sounds
               </Label>
               <Switch
@@ -149,26 +149,44 @@ export function SettingsPanel() {
               Appearance
             </h3>
             
-            <div>
-              <Label htmlFor="color-theme">Color Theme</Label>
-              <Select
-                value={tempSettings.colorTheme}
-                onValueChange={(value: 'classic' | 'sunset' | 'ocean' | 'forest' | 'lavender' | 'candy') => 
-                  updateTempSetting('colorTheme', value)
-                }
-              >
-                <SelectTrigger className="mt-1">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="classic">🦆 Classic Duck</SelectItem>
-                  <SelectItem value="sunset">🌅 Sunset</SelectItem>
-                  <SelectItem value="ocean">🌊 Ocean</SelectItem>
-                  <SelectItem value="forest">🌲 Forest</SelectItem>
-                  <SelectItem value="lavender">💜 Lavender</SelectItem>
-                  <SelectItem value="candy">🍭 Candy</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <Label htmlFor="color-theme">Color Theme</Label>
+                <Select
+                  value={tempSettings.colorTheme}
+                  onValueChange={(value: 'classic' | 'sunset' | 'ocean' | 'forest' | 'lavender' | 'candy') => 
+                    updateTempSetting('colorTheme', value)
+                  }
+                >
+                  <SelectTrigger className="mt-1">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="classic">🦆 Classic Duck</SelectItem>
+                    <SelectItem value="sunset">🌅 Sunset</SelectItem>
+                    <SelectItem value="ocean">🌊 Ocean</SelectItem>
+                    <SelectItem value="forest">🌲 Forest</SelectItem>
+                    <SelectItem value="lavender">💜 Lavender</SelectItem>
+                    <SelectItem value="candy">🍭 Candy</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div>
+                <Label htmlFor="theme">Theme</Label>
+                <Select
+                  value={tempSettings.theme}
+                  onValueChange={(value: 'light' | 'dark') => updateTempSetting('theme', value)}
+                >
+                  <SelectTrigger className="mt-1">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">Light</SelectItem>
+                    <SelectItem value="dark">Dark</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
             
             <div>
@@ -186,22 +204,6 @@ export function SettingsPanel() {
                   <SelectItem value="minimal">Minimal</SelectItem>
                   <SelectItem value="normal">Normal</SelectItem>
                   <SelectItem value="full">Full</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label htmlFor="theme">Theme</Label>
-              <Select
-                value={tempSettings.theme}
-                onValueChange={(value: 'light' | 'dark') => updateTempSetting('theme', value)}
-              >
-                <SelectTrigger className="mt-1">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -229,20 +231,20 @@ export function SettingsPanel() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3 pt-4 border-t">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
             <Button onClick={handleSave} className="flex-1">
               Save Settings
             </Button>
-            <Button onClick={handleReset} variant="outline">
+            <Button onClick={handleReset} variant="outline" className="sm:w-auto">
               Reset
             </Button>
           </div>
         </motion.div>
 
         {/* Keyboard Shortcuts Info */}
-        <div className="mt-6 p-4 bg-muted/50 rounded-lg">
+        <div className="mt-6 p-3 sm:p-4 bg-muted/50 rounded-lg">
           <h4 className="text-sm font-semibold mb-2">Keyboard Shortcuts</h4>
-          <div className="space-y-1 text-xs text-muted-foreground">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 text-xs text-muted-foreground">
             <div><kbd className="bg-background px-1 rounded">Space</kbd> - Start/Pause</div>
             <div><kbd className="bg-background px-1 rounded">R</kbd> - Reset</div>
             <div><kbd className="bg-background px-1 rounded">→</kbd> - Skip Phase</div>

@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useTimerStore, TimerPhase } from '@/store/timerStore';
-import duckImage from '@/assets/duck-mascot.png';
 
 interface DuckMascotProps {
   className?: string;
@@ -85,17 +84,17 @@ export function DuckMascot({ className = '' }: DuckMascotProps) {
           </svg>
         </div>
 
-        {/* Duck image */}
-        <motion.img
-          src={duckImage}
-          alt="Duck mascot"
-          className={`w-20 h-20 mx-auto mt-6 ${getDuckAnimation()}`}
+        {/* Duck emoji */}
+        <motion.div
+          className={`w-20 h-20 mx-auto mt-6 flex items-center justify-center text-5xl ${getDuckAnimation()}`}
           style={{
             filter: phase === 'focus' && isRunning 
               ? 'brightness(1.1) saturate(1.2)' 
               : 'brightness(1) saturate(1)',
           }}
-        />
+        >
+          🦆
+        </motion.div>
       </motion.div>
 
       {/* Motivational message */}
