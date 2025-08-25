@@ -90,7 +90,7 @@ export function HistoryDrawer() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold">Recent Sessions</h3>
-              {stats.history.length > 0 && (
+              {stats.history && stats.history.length > 0 && (
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button variant="ghost" size="sm" className="text-destructive">
@@ -119,7 +119,7 @@ export function HistoryDrawer() {
               )}
             </div>
 
-            {stats.history.length === 0 ? (
+            {!stats.history || stats.history.length === 0 ? (
               <div className="text-center py-8 text-muted-foreground">
                 <Clock className="w-8 h-8 mx-auto mb-2 opacity-50" />
                 <p className="text-sm">No sessions yet</p>
@@ -127,7 +127,7 @@ export function HistoryDrawer() {
               </div>
             ) : (
               <div className="space-y-2 max-h-96 overflow-y-auto">
-                {stats.history
+                {(stats.history || [])
                   .slice()
                   .reverse()
                   .map((session) => (
